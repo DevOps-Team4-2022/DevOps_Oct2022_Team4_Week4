@@ -21,3 +21,7 @@ jobs:
     - name: List out contents
       run: |
         ls
+    - name: test with pytest
+      run: |
+        pytest test.py -v -cov
+    
