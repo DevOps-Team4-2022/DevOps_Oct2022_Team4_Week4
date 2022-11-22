@@ -10,7 +10,7 @@ jobs:
     steps:
     - uses: actions/setup-python@v2
       with:
-        python-version: 3.8
+        python-version: 3.10.8
     - name: Install Libraries
       run: |
         pip install flake8 pytest pytest-cov
@@ -24,4 +24,14 @@ jobs:
     - name: test with pytest
       run: |
         pytest test.py -v -cov
+        
+    - if: ${{ failure() }}
+      uses: nashmaniac/create-issue-action@v1.1
+      name: Create Issue Action
+      with:
+        title: Build Failed
+        token: ${{secrets.GITHUB_TOKEN}}
+        assignees: ${{github.actor}}
+        labels: worflow-failed
+        body: Workflow failed for commit ${{github.sha}}
     
