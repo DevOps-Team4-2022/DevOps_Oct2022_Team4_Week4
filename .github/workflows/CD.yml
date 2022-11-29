@@ -1,14 +1,14 @@
-name: CI for Hello World
+name: Pull Request 
 
-on:
-  push:
+on: 
+  pull_request:
     branches: [main]
-    
+
 jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/setup-python@v2
+    - uses: actions/checkoout@v2
       with:
         python-version: 3.11
     - name: Install Libraries
@@ -24,7 +24,6 @@ jobs:
     - name: test with pytest
       run: |
         pytest test.py -v -cov --junitxml=report.xml
-        
     - if: ${{ failure() }}
       uses: JasonEtco/create-an-issue@v2
       env:
@@ -37,3 +36,14 @@ jobs:
       if: always()
       with:
         junit_files: "report.xml"
+    - name: create folder
+      run: mkdir downloads
+    
+    - name: move files
+      run: mv *.xml ./downloads
+      
+    - name: Upload document
+      uses: actions/upload-artifact@v2
+      with: 
+        name: assetDocuments
+        path: downloads
