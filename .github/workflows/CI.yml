@@ -17,7 +17,7 @@ jobs:
     - name: Checkout Own Repo
       uses: actions/checkout@v2
       with:
-        repository: lowkh/DevOps2022Demo
+        repository: DevOps-Team4-2022/DevOps_Oct2022_Team4_Week4
     - name: list our contents
       run: |
         ls
