@@ -1,5 +1,10 @@
 import pytest
+from helloworld import helloworld
+
 
 def test_testOne():
   result = helloworld()
-  assert result == "hello world!"
+  assert result == "Hello World!"
+
+
+test_testOne()
