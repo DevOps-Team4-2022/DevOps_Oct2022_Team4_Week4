@@ -8,7 +8,7 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkoout@v2
+    - uses: actions/checkout@v2
       with:
         python-version: 3.11
     - name: Install Libraries
@@ -47,3 +47,4 @@ jobs:
       with: 
         name: assetDocuments
         path: downloads
+    
